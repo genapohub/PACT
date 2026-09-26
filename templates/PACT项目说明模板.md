@@ -2,6 +2,9 @@
 
 > 本项目采用 PACT：产品 AI 契约化交付流程。  
 > AI 参与本项目开发时，必须先阅读本文件，再根据任务阶段读取对应目录。
+>
+> 本文件由 agent 在项目初始化时从 `.pact/templates/PACT项目说明模板.md` 复制而来；
+> 规范更新：`git -C .pact pull`。PACT 完整流程见 `.pact/README.md`。
 
 ## 1. 项目目录
 
