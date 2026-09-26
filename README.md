@@ -795,6 +795,58 @@ PACT 解决的是：
 
 > 在 PM 和 AI 工具协作开发产品时，如何把需求、页面、接口、代码和验收连接成一个可执行闭环。
 
-## 13. License
+## 13. 如何维护 pact-flow（本仓库自身）
+
+本仓库既是**三端全局技能**（装进 coding agent 的 skills 目录，任何项目可触发），也是**项目内嵌快照**（业务项目 `git clone ... .pact`）。维护时记住下面四条链路。
+
+### 13.1 四个位置
+
+| 角色 | 位置 | 说明 |
+|---|---|---|
+| 源仓库（唯一编辑入口） | 你的本地源目录（如 `03-技术文档/pact-flow/`） | **只在这里改文件** |
+| 远程仓库 | `git@github.com:genapohub/pact-flow.git` | SSH，唯一中转 |
+| 三端全局副本 | `~/.workbuddy/skills/pact-flow/`、`~/.codex/skills/pact-flow/`、`~/.cursor/skills-cursor/pact-flow/` | coding agent 全局触发用 |
+| 业务项目内嵌副本 | 各项目根 `.pact/` | 独立快照，**不**随三端自动更新 |
+
+### 13.2 日常维护（改模板 / 提示词 / SKILL.md）
+
+```bash
+# 1. 在源仓库修改（唯一入口），然后提交推送
+git -C <源仓库> add -A
+git -C <源仓库> commit -m "说明改了什么"
+git -C <源仓库> push
+
+# 2. 三端全局副本各自同步
+for d in ~/.workbuddy/skills/pact-flow ~/.codex/skills/pact-flow ~/.cursor/skills-cursor/pact-flow; do
+  git -C "$d" pull --ff-only
+done
+
+# 3. 业务项目内嵌快照按需更新
+git -C <你的项目>/.pact pull
+```
+
+> 用 `pull --ff-only` 而非 `pull`：避免下游副本出现本地提交造成反向漂移或合并冲突。
+
+### 13.3 加新能力
+
+- **只改 `SKILL.md` 或 `prompts/`，不加脚本** —— PACT 的执行主体是 agent，不是脚本（历史 `init.sh` 已因此删除）。
+- 新模板放 `templates/`，新提示词放 `prompts/`，三端 clone 会自动带走。
+- 能力有实质变化时，同步递增 `SKILL.md` frontmatter 的 `version` 字段（当前 `1.0.0`）。
+
+### 13.4 已知坑
+
+- **remote 必须是 SSH**：HTTPS remote 在无凭证环境下 `pull` 会静默失败。
+- **源仓库改之前先 `git pull`**：防止源落后于 GitHub 导致下游反向漂移。
+- **zsh 循环目录用数组**：`for d in ${arr[@]}`，不要用 `$VAR` 靠空格分割。
+- **目录名相近**（`skills` / `skills-cursor`）：巡检输出用完整路径区分三端。
+- 本仓库**没有 `memory/` 目录**，三端 `pull` 不会因运行记忆文件冲突。
+
+### 13.5 不要做的事
+
+- 不要在 `~/.workbuddy/skills/pact-flow/` 或业务项目 `.pact/` 里直接改文件后回推（反向漂移）。
+- 不要随意改 GitHub 仓库名（改名后旧 URL 仅短期重定向，需同步更新所有 remote）。
+- 不要把新能力写成 shell 脚本。
+
+## 14. License
 
 MIT License. See `LICENSE` for details.
