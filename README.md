@@ -179,7 +179,7 @@ git clone git@github.com:genapohub/PACT.git .pact
 
 之后的每次对话，先让 agent 读取根目录 `PACT.md` 再工作。PACT 规范更新时执行 `git -C .pact pull`。
 
-不用 agent 的手动备选：`bash .pact/scripts/init.sh 项目名称`，效果等同上面第 1–3 步；已有项目也可以只放一个 `PACT.md`（见 5.1 手动流程），两种方式等价。
+已有项目也可以只放一个 `PACT.md`（见 5.1 手动流程），效果等价。
 
 ### 5.1 第一次初始化项目
 
@@ -718,9 +718,8 @@ GET /healthz
 
 ```text
 templates/  → 复制到项目对应目录后填写
-prompts/    → 作为 AI 工具提示词库
+prompts/    → 作为 AI 工具提示词库（项目初始化入口在 prompts/项目初始化提示词.md）
 examples/   → 参考示例，不要直接当业务模板套用
-scripts/    → init.sh 一键初始化业务项目（见 5.0）
 README.md   → 作为流程规范说明
 ```
 
