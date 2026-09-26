@@ -170,7 +170,7 @@ PACT 不是单独放在一边看的方法论，而是直接嵌入项目根目录
 git clone git@github.com:genapohub/PACT.git .pact
 ```
 
-然后打开 coding agent（Claude Code / Codex / Cursor / Trae 等），把 `prompts/项目初始化提示词.md` 里的提示词整段复制发送（替换尖括号里的项目背景）。agent 会自动完成：
+然后打开 coding agent（Claude Code / Codex / Cursor / Trae 等），把 `.pact/prompts/项目初始化提示词.md` 里的提示词整段复制发送（替换尖括号里的项目背景）。agent 会自动完成：
 
 1. 创建 7 个标准目录（`01-竞品分析/` … `07-其他文档/`）。
 2. 把模板复制到对应位置：根目录 `PACT.md`、`DESIGN.md`、验收清单、页面设计契约、API 接口契约、联调记录（不覆盖已有文件）。
@@ -193,6 +193,7 @@ mkdir 01-竞品分析 02-产品文档 03-品牌设计 04-UIUX设计 05-技术文
 
 ```text
 templates/PACT项目说明模板.md       → PACT.md
+templates/DESIGN.md模板.md          → DESIGN.md
 templates/页面设计契约模板.md      → 04-UIUX设计/页面设计契约_v1.0.md
 templates/API接口契约模板.md       → 05-技术文档/API接口契约_v1.0.md
 templates/验收清单模板.md          → 02-产品文档/验收清单_v1.0.md
