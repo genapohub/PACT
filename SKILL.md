@@ -18,7 +18,7 @@ version: 1.0.0
 1. 创建 7 个标准目录（已存在跳过）：`01-竞品分析`、`02-产品文档`、`03-品牌设计`、`04-UIUX设计`、`05-技术文档`、`06-项目编码`、`07-其他文档`。
 2. 复制模板（不覆盖已有文件）。**模板来源优先级**：
    - 项目内已存在 `.pact/templates/` → 用它；
-   - 否则提示用户先 `git clone git@github.com:genapohub/PACT.git .pact`，或本 skill 同级 `templates/`（若已随 skill 复制）；
+   - 否则提示用户先 `git clone git@github.com:genapohub/pact-flow.git .pact`，或本 skill 同级 `templates/`（若已随 skill 复制）；
    - 映射：`PACT项目说明模板.md → PACT.md`、`DESIGN.md模板.md → DESIGN.md`、`验收清单模板.md → 02-产品文档/验收清单_v1.0.md`、`页面设计契约模板.md → 04-UIUX设计/页面设计契约_v1.0.md`、`API接口契约模板.md → 05-技术文档/API接口契约_v1.0.md`、`联调记录模板.md → 05-技术文档/联调记录.md`。
 3. 把 `.pact/` 写入根目录 `.gitignore`（若没有 `.pact/` 子仓库则跳过）。
 4. 读取生成的 `PACT.md`，生成：

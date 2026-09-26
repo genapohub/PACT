@@ -170,7 +170,7 @@ PACT 有两种接入方式，**都靠仓库根目录的 `SKILL.md` 自动守门*
 在业务项目根目录执行：
 
 ```bash
-git clone git@github.com:genapohub/PACT.git .pact
+git clone git@github.com:genapohub/pact-flow.git .pact
 ```
 
 克隆后，`SKILL.md` 已经在 `.pact/` 里。打开 coding agent（Claude Code / Codex / Cursor / Trae / Open Design 等），**只要说一句**：
@@ -191,13 +191,12 @@ agent 会自动读取 `.pact/SKILL.md`，完成：
 把 PACT 作为全局技能装进各 coding 工具，任何项目都能直接触发，无需在每个项目里克隆 `.pact`：
 
 ```bash
-git clone git@github.com:genapohub/PACT.git ~/.workbuddy/skills/pact    # WorkBuddy
-git clone git@github.com:genapohub/PACT.git ~/.codex/skills/pact         # Codex
-git clone git@github.com:genapohub/PACT.git ~/.cursor/skills-cursor/pact # Cursor
-git clone git@github.com:genapohub/PACT.git ~/.zcode/skills/pact         # ZCode
+git clone git@github.com:genapohub/pact-flow.git ~/.workbuddy/skills/pact-flow    # WorkBuddy
+git clone git@github.com:genapohub/pact-flow.git ~/.codex/skills/pact-flow         # Codex
+git clone git@github.com:genapohub/pact-flow.git ~/.cursor/skills-cursor/pact-flow # Cursor
 ```
 
-> 注意：全局安装后，skill 初始化模板来源回退为「本 skill 同级 `templates/`」（见 SKILL.md 第 1 节）。更新用 `git -C <目录> pull --ff-only`。
+> 注意：ZCode 端你已卸载、不再同步；如需重新启用，补齐上面同款命令（目标目录 `~/.zcode/skills/pact-flow`）即可。全局安装后，skill 初始化模板来源回退为「本 skill 同级 `templates/`」（见 SKILL.md 第 1 节）。更新用 `git -C <目录> pull --ff-only`。
 
 #### 5.0.3 手动降级路径（工具不支持 SKILL.md 时）
 
