@@ -161,23 +161,47 @@ PACT 不是单独放在一边看的方法论，而是直接嵌入项目根目录
 
 其中 `PACT.md` 是项目级流程说明，可以从本仓库 README 摘要复制，也可以只写清楚本项目采用 PACT 的目录约定、阶段门禁和交付标准。
 
-### 5.0 快速开始（推荐：克隆 + 对话初始化）
+### 5.0 快速开始
 
-新项目第一次接入 PACT，一条命令 + 一次对话：
+PACT 有两种接入方式，**都靠仓库根目录的 `SKILL.md` 自动守门**（初始化 + 阶段纪律 + 硬规则），不需要手动粘贴长提示词。
+
+#### 5.0.1 项目内嵌入（推荐，逐项目隔离）
+
+在业务项目根目录执行：
 
 ```bash
-# 在业务项目根目录执行
 git clone git@github.com:genapohub/PACT.git .pact
 ```
 
-然后打开 coding agent（Claude Code / Codex / Cursor / Trae 等），把 `.pact/prompts/项目初始化提示词.md` 里的提示词整段复制发送（替换尖括号里的项目背景）。agent 会自动完成：
+克隆后，`SKILL.md` 已经在 `.pact/` 里。打开 coding agent（Claude Code / Codex / Cursor / Trae / Open Design 等），**只要说一句**：
+
+> 用 PACT 初始化本项目，并录入项目背景。
+
+agent 会自动读取 `.pact/SKILL.md`，完成：
 
 1. 创建 7 个标准目录（`01-竞品分析/` … `07-其他文档/`）。
 2. 把模板复制到对应位置：根目录 `PACT.md`、`DESIGN.md`、验收清单、页面设计契约、API 接口契约、联调记录（不覆盖已有文件）。
 3. 把 `.pact/` 写入 `.gitignore`——规范仓库只在本地引用，不进业务仓库。
-4. 读取根目录 `PACT.md`，生成 `07-其他文档/项目背景_v1.0.md` 与 `02-产品文档/项目_PRD_v0.1.md` 骨架，输出就绪报告。
+4. 读取生成的 `PACT.md`，生成 `07-其他文档/项目背景_v1.0.md` 与 `02-产品文档/项目_PRD_v0.1.md` 骨架，输出就绪报告。
 
-之后的每次对话，先让 agent 读取根目录 `PACT.md` 再工作。PACT 规范更新时执行 `git -C .pact pull`。
+之后每次对话，agent 会先读 `PACT.md` 再工作（守门由 skill 自动执行）。规范更新时 `git -C .pact pull`。
+
+#### 5.0.2 全局技能安装（四端，免逐项目克隆）
+
+把 PACT 作为全局技能装进各 coding 工具，任何项目都能直接触发，无需在每个项目里克隆 `.pact`：
+
+```bash
+git clone git@github.com:genapohub/PACT.git ~/.workbuddy/skills/pact    # WorkBuddy
+git clone git@github.com:genapohub/PACT.git ~/.codex/skills/pact         # Codex
+git clone git@github.com:genapohub/PACT.git ~/.cursor/skills-cursor/pact # Cursor
+git clone git@github.com:genapohub/PACT.git ~/.zcode/skills/pact         # ZCode
+```
+
+> 注意：全局安装后，skill 初始化模板来源回退为「本 skill 同级 `templates/`」（见 SKILL.md 第 1 节）。更新用 `git -C <目录> pull --ff-only`。
+
+#### 5.0.3 手动降级路径（工具不支持 SKILL.md 时）
+
+如果所用工具不识别 `SKILL.md` 自动触发，回到 5.1 手动创建目录 + 5.2 启动语，或把 `.pact/prompts/项目初始化提示词.md` 整段粘贴发送（替换尖括号里的项目背景），效果等价。
 
 已有项目也可以只放一个 `PACT.md`（见 5.1 手动流程），效果等价。
 
@@ -730,14 +754,17 @@ GET /healthz
 
 ## 10. 仓库文件说明
 
-如果你直接使用本仓库，建议按下面方式复制：
+如果你直接使用本仓库，建议按下面方式使用：
 
 ```text
-templates/  → 复制到项目对应目录后填写
-prompts/    → 作为 AI 工具提示词库（项目初始化入口在 prompts/项目初始化提示词.md）
-examples/   → 参考示例，不要直接当业务模板套用
-README.md   → 作为流程规范说明
+SKILL.md      → 核心：coding agent 自动识别并守门（初始化 + 阶段纪律 + 硬规则）。克隆即生效，无需粘贴提示词
+templates/    → 初始化时复制到项目对应目录后填写
+prompts/      → AI 工具提示词库（手动降级路径 / 参考入口在 prompts/项目初始化提示词.md）
+examples/     → 参考示例，不要直接当业务模板套用
+README.md     → 流程规范说明
 ```
+
+> 接入优先级：克隆 `.pact`（或全局装技能）→ `SKILL.md` 自动守门 → 无需手动粘贴提示词。只有当工具不支持 `SKILL.md` 时才回到 `prompts/` 手动路径。
 
 ## 11. Definition of Done
 
