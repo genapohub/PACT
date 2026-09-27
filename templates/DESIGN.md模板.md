@@ -178,8 +178,8 @@
 
 ```text
 DESIGN.md（本文件，视觉契约）
-├── → 04-UIUX设计/design-tokens.json    （把第 2/3/5 节转成 token JSON）
-├── → 04-UIUX设计/组件规范_v1.0.md       （把第 4 节展开成组件清单）
+├── → 05-UIUX设计/design-tokens.json    （把第 2/3/5 节转成 token JSON）
+├── → 05-UIUX设计/组件规范_v1.0.md       （把第 4 节展开成组件清单）
 ├── → 06-项目编码/miniapp/app.wxss       （把第 2 节转成 CSS 变量）
 └── → 被 Open Design / coding agent 直接消费
 ```

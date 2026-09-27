@@ -73,9 +73,9 @@ DESIGN.md 不是新增一个「平行文档」，而是**上游源头**，PACT �
 
 ```text
 DESIGN.md（视觉契约，1 份）
-├── → 04-UIUX设计/design-tokens.json     把第 2/3/5 节转成 JSON token
-├── → 04-UIUX设计/组件规范_v1.0.md        把第 4 节展开成组件清单与状态
-├── → 04-UIUX设计/页面设计契约_v1.0.md    契约里的视觉描述引用 Token 名
+├── → 05-UIUX设计/design-tokens.json     把第 2/3/5 节转成 JSON token
+├── → 05-UIUX设计/组件规范_v1.0.md        把第 4 节展开成组件清单与状态
+├── → 05-UIUX设计/页面设计契约_v1.0.md    契约里的视觉描述引用 Token 名
 ├── → 06-项目编码/miniapp/app.wxss       把第 2/3 节转成 CSS 变量 + rpx
 └── → 被 Open Design 注册为 design system
 ```
@@ -102,7 +102,7 @@ DESIGN.md（视觉契约，1 份）
 1. 项目根目录放入 DESIGN.md
 2. 告诉 AI：
    请读取 DESIGN.md 和 02-产品文档/xxx_PRD_v1.0.md，
-   生成 04-UIUX设计/xxx_页面设计契约_v1.0.md 和 04-UIUX设计/design-tokens.json。
+   生成 05-UIUX设计/xxx_页面设计契约_v1.0.md 和 05-UIUX设计/design-tokens.json。
    页面设计契约里的颜色、字号、间距、圆角全部引用 DESIGN.md 的语义 Token 名，不要写死数值。
 3. 人工 Review：Token 命名是否语义化、是否漏了状态色
 ```
@@ -161,8 +161,8 @@ od mcp install codex       # Codex CLI
 ```text
 选 artifact 类型：Prototype / Mobile app / Deck
 选 design system：<你的品牌>
-输入 brief：从 04-UIUX设计/页面设计契约 里取页面目标与信息架构
-产出 → 落到 04-UIUX设计/prototype/（作为视觉基准）
+输入 brief：从 05-UIUX设计/页面设计契约 里取页面目标与信息架构
+产出 → 落到 05-UIUX设计/prototype/（作为视觉基准）
     或 → 06-项目编码/frontend/（继续工程化）
 ```
 
@@ -170,8 +170,8 @@ od mcp install codex       # Codex CLI
 
 | 产物 | 用途 | 归位 |
 |---|---|---|
-| HTML 原型 | 视觉基准 / 交互确认 | `04-UIUX设计/prototype/` |
-| PPTX / PDF | 汇报、评审、对外 | `07-其他文档/` |
+| HTML 原型 | 视觉基准 / 交互确认 | `05-UIUX设计/prototype/` |
+| PPTX / PDF | 汇报、评审、对外 | `08-其它文档/` |
 
 ### 4.4 边界（重要）
 
@@ -190,7 +190,7 @@ UI Verse（`uiverse.io`，GitHub `uiverse-io/galaxy`，MIT，1.3 万 star）是*
 ```text
 1. uiverse.io 按标签找组件（按钮/卡片/表单/开关/加载态…）
 2. 点 Get Code，复制 HTML + CSS
-3. 登记进 04-UIUX设计/组件规范_v1.0.md：组件名 | 来源链接 | 已适配 Token | 状态
+3. 登记进 05-UIUX设计/组件规范_v1.0.md：组件名 | 来源链接 | 已适配 Token | 状态
 ```
 
 ### 5.2 转成小程序 WXSS 的改写清单
@@ -247,7 +247,7 @@ PACT 支持小程序场景，三件套落到小程序有几个硬约束：
 ① Phase 2 视觉契约
    项目根目录放 DESIGN.md（用 templates/DESIGN.md模板.md，示例值就是飞书风蓝紫主色）
    → 让 AI 读 DESIGN.md + 宠宝树 PRD
-   → 产出 04-UIUX设计/design-tokens.json + 页面设计契约
+   → 产出 05-UIUX设计/design-tokens.json + 页面设计契约
 
 ② 小程序铺底
    把 DESIGN.md 第 2/3 节转成 06-项目编码/miniapp/app.wxss 的 CSS 变量
@@ -256,7 +256,7 @@ PACT 支持小程序场景，三件套落到小程序有几个硬约束：
 ③ Phase 4 原型（可选，若需要先确认视觉）
    Open Design 选该 DESIGN.md 为 design system
    → 生成关键页 Prototype（如订单详情、宠舍列表）
-   → 产物放 04-UIUX设计/prototype/ 作为视觉基准
+   → 产物放 05-UIUX设计/prototype/ 作为视觉基准
 
 ④ 组件补齐
    UI Verse 取飞书风格的卡片/表单/标签，按第 5.2 表转 WXSS，
