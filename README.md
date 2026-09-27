@@ -803,7 +803,7 @@ PACT 解决的是：
 
 | 角色 | 位置 | 说明 |
 |---|---|---|
-| 源仓库（唯一编辑入口） | 你的本地源目录（如 `03-技术文档/pact-flow/`） | **只在这里改文件** |
+| 源仓库（唯一编辑入口） | 你本地克隆 `genapohub/pact-flow` 的仓库根目录（例如 `~/Downloads/WorkBuddy/pact-flow/`） | **只在这里改文件** |
 | 远程仓库 | `git@github.com:genapohub/pact-flow.git` | SSH，唯一中转 |
 | 三端全局副本 | `~/.workbuddy/skills/pact-flow/`、`~/.codex/skills/pact-flow/`、`~/.cursor/skills-cursor/pact-flow/` | coding agent 全局触发用 |
 | 业务项目内嵌副本 | 各项目根 `.pact/` | 独立快照，**不**随三端自动更新 |
